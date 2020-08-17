@@ -3,11 +3,11 @@
 one:
   title: MyString
   author: MyString
-  pergola: one
-  user: one
+  user_id: 1
+  pergola_id: 1
 
 two:
   title: MyString
   author: MyString
-  pergola: two
-  user: two
+  user_id: 1
+  pergola_id: 1
