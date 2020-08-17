@@ -1,0 +1,2 @@
+module PergolasHelper
+end
