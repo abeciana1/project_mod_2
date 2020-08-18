@@ -1,0 +1,8 @@
+.book-record-search {
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: right;
+    float: right;
+    margin: 10px;
+}

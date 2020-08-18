@@ -18,3 +18,11 @@ book_isbns2 = ("9780545010221,9780590353427,9780747532743,9780747532743,84983863
 book_isbns = book_isbns+book_isbns2+book_isbns1
 records=book_isbns.map{|record|BookRecord.populate(record)}
 creation_line=records.each{|record|BookRecord.find_or_create_by(record)}
+
+
+class Book < ApplicationRecord
+    belongs_to :book_record
+    belongs_to :user, optional: true
+    belongs_to :pergola
+    # validates :book_record, uniqueness: true 
+end
