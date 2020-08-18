@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
     before_action :find_user [:show, :edit, :update, :destroy]
      
+    def home
+        
+    end
+
     def show;end
     
     def index

@@ -1,8 +1,14 @@
-.book-record-search {
-    height: 100px;
+.search-table-results {
+    background-color: lightblue;
+    border-radius: 15px;
     display: flex;
-    flex-wrap: wrap;
-    text-align: right;
-    float: right;
+    box-shadow: 5px 3px gray;
+}
+
+.book-record-search {
+    height: 150px;
+    float: left;
     margin: 10px;
+    display: inline-flex;
+    justify-content: space-evenly;
 }
