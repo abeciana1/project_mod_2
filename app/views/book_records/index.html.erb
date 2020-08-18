@@ -1,0 +1,10 @@
+<%= form_tag book_records_path, method: :get do %>
+  <p>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+
+<% @book_records.each do |book_record| %>
+  <%= render partial: 'book_record', locals: {book_record: book_record} %>
+<% end %>
