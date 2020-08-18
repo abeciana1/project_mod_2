@@ -1,0 +1,3 @@
+<% @pergola.book_records.uniq.each do |book_record| %>
+  <%= render partial: 'book_records/book_record', locals: {book_record: book_record} %>
+<% end %>

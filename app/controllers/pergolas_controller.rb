@@ -33,7 +33,6 @@ class PergolasController < ApplicationController
     
     def delete
         @pergola.destroy
-    
         redirect_to pergolas_path
     end
     
