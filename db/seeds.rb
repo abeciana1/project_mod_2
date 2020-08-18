@@ -33,8 +33,8 @@ users.each{|u|User.create(name:u)}
     Pergola.create(name: Faker::Games::Witcher.location)
 end
 
-60.times do
-    Book.create(count:rand(20..50),book_record_id:BookRecord.all.sample.id,pergola_id:Pergola.all.sample.id,user_id:User.all.sample.id)
+500.times do
+    Book.create(book_record_id:BookRecord.all.sample.id,pergola_id:Pergola.all.sample.id,user_id:User.all.sample.id)
 end
 
 # binding.pry

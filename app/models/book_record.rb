@@ -1,3 +1,5 @@
+
+
 class BookRecord < ApplicationRecord
   has_many :books
   has_many :pergolas, through: :books
@@ -21,6 +23,6 @@ class BookRecord < ApplicationRecord
       img_url=result["book"]["image"]
       result["book"]["synopsis"] ? synopsis=result["book"]["synopsis"] : synopsis="The synopsis is not available"
       simple = {title:title,author: author,synopsis:synopsis, img_url:img_url}
-  end
+    end
 
 end
