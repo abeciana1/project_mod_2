@@ -5,6 +5,8 @@ class CreateBookRecords < ActiveRecord::Migration[6.0]
       t.string :author
       t.string :synopsis
       t.string :img_url
+      t.string :isbn13
+      t.string :isbn
 
       t.timestamps
     end

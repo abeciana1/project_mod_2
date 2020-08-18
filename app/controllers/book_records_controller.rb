@@ -29,7 +29,7 @@ class BookRecordsController < ApplicationController
     end
     
     def book_records_params
-        params.require(:book_records).permit(:title,:author,:synopsis,:img_url)
+        params.require(:book_records).permit(:title,:author,:synopsis,:img_url,:isbn13)
     end
 
 end
