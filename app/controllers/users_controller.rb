@@ -5,6 +5,14 @@ class UsersController < ApplicationController
         
     end
 
+    def contact
+        
+    end
+
+    def about
+        
+    end
+
     def show;end
     
     def index

@@ -1,5 +1,5 @@
 .search-table-results {
-    background-color: lightblue;
+    background-color: #AED8EA;
     border-radius: 15px;
     display: flex;
     box-shadow: 5px 3px gray;
@@ -11,4 +11,30 @@
     margin: 10px;
     display: inline-flex;
     justify-content: space-evenly;
+}
+
+#query {
+    width: 40%;
+}
+
+[type="submit"] {
+    width: 100px;
+    font-family: OpenSans, Helvetica Neue;
+    color: #292F36;
+    border-radius: 20px;
+    padding: 5px 5px 5px 5px; 
+}
+
+.invalid-search {
+    color: #FF6663;
+    font-weight: bold;
+    text-align: center;
+    font-size: 150%;
+}
+
+.invalid-search-gif {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
