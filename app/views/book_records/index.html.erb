@@ -1,10 +1,14 @@
 <%= form_tag book_records_path, method: :get do %>
-  <p>
-    <%= text_field_tag :query, params[:query] %>
+  <p class="search-engine">
+    <%= text_field_tag :query, params[:query], placeholder: 'Search by Title' %>
     <%= submit_tag "Search", name: nil %>
   </p>
 <% end %>
-
+<%if @book_records.count > 0%>
 <% @book_records.each do |book_record| %>
   <%= render partial: 'book_record', locals: {book_record: book_record} %>
+<% end %>
+<%else%>
+ <p class="invalid-search">Sorry there were no results, please <%= link_to 'contact us', '/contact' %> if you have an issue.</p>
+ <img class="invalid-search-gif" src="https://orig10.deviantart.net/5866/f/2016/032/5/2/gameover_by_doctorworm1987-d9q6446.gif" alt="pacman game over">
 <% end %>

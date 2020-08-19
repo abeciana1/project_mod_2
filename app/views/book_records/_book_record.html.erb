@@ -1,6 +1,14 @@
-<ul>
-    <li>Title: <%= book_record.title %></li>
-    <li>Author: <%= book_record.author %></li>
-    <li>Synopis: <%= book_record.synopsis %></li>
-    <div style="text-align: left"><img class="book-record-search" src="<%= book_record.img_url %>" > </div>
-</ul>
+<p> 
+    <table class="search-table-results" style="width: 95%">
+        <tr>
+            <td><img class="book-record-search" src="<%= book_record.img_url %>" alt="<%= book_record.title %>"></td>
+            <td>
+                <ul style="padding-inline-start: 10px">
+                    <span><b><%= link_to book_record.title, book_record_path(book_record) %></b></span><br>
+                    <span>by <%= book_record.author %></span><br>
+                    <span><b>Synopis: </b><%= book_record.synopsis %></span><br> 
+                </ul>
+            </td>
+            </tr>
+    </table>
+</p>

@@ -3,5 +3,8 @@ Rails.application.routes.draw do
   resources :book_records
   resources :users
   resources :pergolas
+  get '/', to: 'users#home'
+  get '/about', to: 'users#about'
+  get '/contact', to: 'users#contact'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

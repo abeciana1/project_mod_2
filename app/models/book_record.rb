@@ -21,7 +21,7 @@ class BookRecord < ApplicationRecord
       response = RestClient.get("https://api2.isbndb.com/book/#{isbn_string}", headers={'Authorization': key})
       result = JSON.parse(response.body)
       title=result["book"]["title"]
-      author=result["book"]["authors"]
+      author=result["book"]["authors"].join(",").first
       img_url=result["book"]["image"]
       isbn13=result["book"]["isbn13"]
       isbn=result["book"]["isbn"]
@@ -37,3 +37,4 @@ class BookRecord < ApplicationRecord
     end
 
 end
+
