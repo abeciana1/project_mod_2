@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 2020_08_18_160900) do
     t.string "author"
     t.string "synopsis"
     t.string "img_url"
+    t.string "isbn13"
+    t.string "isbn"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
