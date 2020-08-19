@@ -8,8 +8,13 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+    <div class="nav-bar">
+      <div class="nav-item" style="text-decoration: none"><a href="/">Home</a></div>
+      <div class="nav-item" style="text-decoration: none"><a href="/contact">Contact</a></div>
+      <div class="nav-item" style="text-decoration: none"><a href="/about">About</a></div>
+    </div>
+
     <%= yield %>
   </body>
 </html>
