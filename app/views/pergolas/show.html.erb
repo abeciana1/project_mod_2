@@ -1,4 +1,9 @@
+<h1><%= @pergola.name %></h1>
 
+<p>We're located at: <%= "#{@pergola.address1} #{@pergola.address2}, #{@pergola.city}, #{@pergola.state} #{@pergola.zip_code}"  %></p>
+<br />
+<br />
+<h2>Check the books at this location:</h2>
 <% @pergola.book_records.each do |book_record| %>
   <%= render partial: 'book_records/book_record', locals: {book_record: book_record} %>
 <% end %>

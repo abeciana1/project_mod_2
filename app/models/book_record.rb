@@ -1,4 +1,7 @@
-
+require 'pry'
+require "net/http"
+require "json"
+require "httparty"
 
 class BookRecord < ApplicationRecord
   has_many :books
@@ -21,8 +24,12 @@ class BookRecord < ApplicationRecord
       result = JSON.parse(response.body)
       if result["book"]
       title=result["book"]["title"]
-      author=result["book"]["authors"]
-      img_url=result["book"]["image"]
+      author=result["book"]["authors"].uniq.join
+
+      img_url = result["book"]["image"]
+      replace= "https://firstfreerockford.org/wp-content/uploads/2018/08/placeholder-book-cover-default.png"
+      img_url = replace if RestClient.get(img_url){|response, request, result| response }.code == 404
+
       isbn13=result["book"]["isbn13"]
       isbn=result["book"]["isbn"]
       result["book"]["synopsis"] ? synopsis=result["book"]["synopsis"] : synopsis="The synopsis is not available"
@@ -39,4 +46,18 @@ class BookRecord < ApplicationRecord
       results =result["books"] 
     end
 
+    def self.image_checker
+      BookRecord.all.each do |record|
+        record.img_url = "https://firstfreerockford.org/wp-content/uploads/2018/08/placeholder-book-cover-default.png" if RestClient.get(record.img_url){|response, request, result| response }.code == 404
+        record.save
+      end
+    end
+
+    def self.image_count
+      BookRecord.all.map do |record|
+        RestClient.get(record.img_url){|response, request, result| response }.code
+      end
+    end
+
 end
+
