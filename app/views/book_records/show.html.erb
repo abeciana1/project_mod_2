@@ -1,5 +1,8 @@
-<h1 style="text-align: center"> <%= @book_record.title %> </h1>
+<!-- available to only admin -->
+<%= button_to 'Edit this record', edit_book_record_path(@book_record), :method => :get, data:{confirm:'edit'} %>
+<%= button_to 'Delete this record', @book_record, method: :delete, data:{confirm:'For real?'} %>
 
+<h1 style="text-align: center"> <%= @book_record.title %> </h1>
 <p>
     <table class="book-record-show-result" style="width: 95%">
         <tr>
@@ -15,6 +18,7 @@
                     <p><%= link_to pergola.name, pergola_path(pergola)%><br>
                         We're located at: <%= "#{pergola.address1}, #{pergola.city}, #{pergola.state} #{pergola.zip_code}"  %>
                     </p>
+                    
                     <%end%>
                 </ul>
             </td>
@@ -23,7 +27,3 @@
 </p>
 
 
-
-
-<%= button_to 'Edit this record', @book_record, method: :edit, data:{confirm:'edit'} %>
-<%= button_to 'Delete this record', @book_record, method: :delete, data:{confirm:'For real?'} %>
