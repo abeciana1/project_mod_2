@@ -26,3 +26,18 @@ class Book < ApplicationRecord
     belongs_to :pergola
     # validates :book_record, uniqueness: true 
 end
+
+
+
+url1 = "https://images.isbndb.com/covers/89/23/9788498388923.jpg" #404 error
+url2 = "https://images.isbndb.com/covers/62/04/9781526606204.jpg"
+url3= "https://images.isbndb.com/covers/37/03/9781551923703.jpg" # non 404 error
+url4 = "https://images.isbndb.com/covers/36/35/97897447236.jpg"
+response1 = RestClient.get(url1){|response, request, result| response }.code
+response2 = RestClient.get(url2){|response, request, result| response }.code
+response3 = RestClient.get(url3){|response, request, result| response }.code
+response4 = RestClient.get(url4){|response, request, result| response }.code
+response1 == 404
+response2 == 404 
+response3 == 404 
+response4 == 404 

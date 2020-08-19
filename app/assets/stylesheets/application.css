@@ -32,6 +32,14 @@
     
 }
 
+.footer {
+    background-color: lightgray;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 .nav-item {
     display: inline;
     font-weight: bold;

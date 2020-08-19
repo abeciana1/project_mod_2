@@ -1,7 +1,29 @@
-<%= render partial: 'book_record' , locals: {book_record: @book_record} %>
-<%=render partial: 'book_records2', locals: {book_record: @book_record} %>
+<h1 style="text-align: center"> <%= @book_record.title %> </h1>
 
-<br>
-<br>
-<!--<%= link_to 'Delete this record', @book_record, method: :delete, data:{confirm:'For real?'} %>-->
+<p>
+    <table class="book-record-show-result" style="width: 95%">
+        <tr>
+            <td><img class="book-record-show-details" src="<%= @book_record.img_url %>" alt="<%= @book_record.title %>"></td>
+            <td>
+                <ul style="padding-inline-start: 100px">
+                    <p><b><%= link_to @book_record.title, book_record_path(@book_record) %></b></p>
+                    <p>by <%= @book_record.author %> </p><br>
+                    <p><b>Synopis: </b><%= @book_record.synopsis %></p><br>
+                    <br />
+                    <h2>Find this book at a Pergola near you!</h2>
+                    <% @book_record.pergolas.each do |pergola| %>
+                    <p><%= link_to pergola.name, pergola_path(pergola)%><br>
+                        We're located at: <%= "#{pergola.address1}, #{pergola.city}, #{pergola.state} #{pergola.zip_code}"  %>
+                    </p>
+                    <%end%>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</p>
+
+
+
+
+<%= button_to 'Edit this record', @book_record, method: :edit, data:{confirm:'edit'} %>
 <%= button_to 'Delete this record', @book_record, method: :delete, data:{confirm:'For real?'} %>

@@ -39,6 +39,14 @@
     width: 50%;
 }
 
-.footer {
-    background-color: lightgray;
+.book-record-show-result {
+    display: flex;
+}
+
+.book-record-show-details {
+    height: 300px;
+    float: left;
+    margin: 10px;
+    display: inline-flex;
+    justify-content: space-evenly;
 }
