@@ -1,0 +1,29 @@
+
+<%if flash[:errors]%>
+    <%flash[:errors].each do|e|%>
+        <%=e%>
+    <%end%>
+<%end%>
+
+<%if flash[:book]%>
+    <%=flash[:book][1]%>
+<%end%>
+
+<%= form_for @book do |f| %>
+    <p>
+    <%=f.label :count%>
+    <%=f.number_field :count%>
+    </p>
+    <p></p>
+    <%if flash[:book]%>
+        <%=f.collection_select :book_record_id, @book_records.select{|x|x.id==flash[:book][0]["id"]}, :id, :title%>
+    <%else%>    
+        <%=f.collection_select :book_record_id, @book_records, :id, :title%>
+    <%end%>
+    </p>
+    <%=f.collection_select :pergola_id, @pergolas, :id, :name%>
+    <p>
+    <%=f.submit%>
+    </p>
+<% end %>
+

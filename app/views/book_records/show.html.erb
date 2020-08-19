@@ -21,3 +21,9 @@
         </tr>
     </table>
 </p>
+
+
+
+
+<%= button_to 'Edit this record', @book_record, method: :edit, data:{confirm:'edit'} %>
+<%= button_to 'Delete this record', @book_record, method: :delete, data:{confirm:'For real?'} %>
