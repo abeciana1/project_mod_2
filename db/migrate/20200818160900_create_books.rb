@@ -4,6 +4,8 @@ class CreateBooks < ActiveRecord::Migration[6.0]
       t.integer "book_record_id"
       t.integer "pergola_id"
       t.integer "user_id"
+      t.integer "count"
+
       t.timestamps
     end
   end

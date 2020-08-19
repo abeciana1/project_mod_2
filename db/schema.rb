@@ -27,18 +27,26 @@ ActiveRecord::Schema.define(version: 2020_08_18_160900) do
     t.integer "book_record_id"
     t.integer "pergola_id"
     t.integer "user_id"
+    t.integer "count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pergolas", force: :cascade do |t|
     t.string "name"
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.string "state"
+    t.integer "zip_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.string "password_digest"
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

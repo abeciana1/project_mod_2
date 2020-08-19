@@ -1,7 +1,7 @@
 <h1>Our Pergolas</h1>
 <% @pergolas.each do |pergola| %>
   <p><%=link_to pergola.name, pergola_path(pergola)%>:<br>
-  has <%=pergola.books.map.count%> books for our community<br>
+  has <%=pergola.books.map{|b|b.count}.sum%> books for our community<br>
   has <%=pergola.book_records.uniq.count%> different books for our community<br>
   </p>
 <% end %>
