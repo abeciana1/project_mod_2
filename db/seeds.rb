@@ -19,11 +19,12 @@ book_isbns1 = ("9780449213940,9780553212419,9781616897987,9783836565547,97838365
 book_isbns2 = ("9780545010221,9780590353427,9780747532743,9780747532743,8498386314").split(",")
 book_isbns = book_isbns+book_isbns2+book_isbns1
 records=book_isbns.map{|record|BookRecord.populate(record)}
+# binding.pry
 creation_line=records.each{|record|BookRecord.find_or_create_by(record)}
 
 results=BookRecord.populate_by_author("rowling")
 # binding.pry
-results=results.map{|b|{title:b["title"],author: b["authors"],synopsis:(b["synopsis"] ? b["synopsis"] : "The synopsis is not available"), img_url:b["image"],isbn13:b["isbn13"], isbn:b["isbn"]}}
+results=results.map{|b|{title:b["title"],author: "J.K. Rowling",synopsis:(b["synopsis"] ? b["synopsis"] : "The synopsis is not available"), img_url:b["image"],isbn13:b["isbn13"], isbn:b["isbn"]}}
 results.each{|record|BookRecord.find_or_create_by(record)}
 
 users="greg,alexS,Tashawn,IanG,James,IanR,Jennifer,Alex,Junko,RyanW,Karan,SeMin,JakeL,Brian,Devin,Muhtasim,Josh,DavidKir,Amit,JakeM,Victor,Kevin,RyanF,Vincent,DavidK,Ward,Codyd,RyanL,Matthew,Gregory,Codyc,Mimi,Minelie,Joseph,Samuel,Sawandi,Iuri,Jzavier,Israel,Vlad,Teddy"
@@ -33,7 +34,7 @@ users.each{|u|User.create(name:u, password_digest:"1234",email:"#{u}@flat.com")}
 pergolas=[{
     name: Faker::Games::Witcher.location,
     address1: "233 Spring Street",
-    address2: nil,
+    address2: " ",
     city: "New York City",
     state: "New York",
     zip_code: 10013
@@ -41,7 +42,7 @@ pergolas=[{
 {
     name: Faker::Games::Witcher.location,
     address1: "11115 75th Ave",
-    address2: nil,
+    address2: " ",
     city: "Flushing",
     state: "New York",
     zip_code: 11375
@@ -49,7 +50,7 @@ pergolas=[{
 {
     name: Faker::Games::Witcher.location,
     address1: "285 Park Ave",
-    address2: nil,
+    address2: " ",
     city: "New York City",
     state: "New York",
     zip_code: 10171
@@ -57,7 +58,7 @@ pergolas=[{
 {
     name: Faker::Games::Witcher.location,
     address1: "11 martine avenue",
-    address2: nil,
+    address2: " ",
     city: "White Plains",
     state: "New York",
     zip_code: 10606
@@ -65,7 +66,7 @@ pergolas=[{
 {
     name: Faker::Games::Witcher.location,
     address1: "24056 65th Ave",
-    address2: nil,
+    address2: " ",
     city: "Douglaston",
     state: "New York",
     zip_code: 11362
@@ -86,7 +87,7 @@ p User.count
 p Book.count
 puts "cash Money"
 
-
+# BookRecord.populate("9781514682050")
 # binding.pry
 # 0
 
