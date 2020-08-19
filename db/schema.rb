@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_18_160900) do
+ActiveRecord::Schema.define(version: 2020_08_19_030703) do
 
   create_table "book_records", force: :cascade do |t|
     t.string "title"
     t.string "author"
     t.string "synopsis"
-    t.string "img_url"
+    t.string "img_url", default: "app/assets/images/placeholder-book-cover-default (1).png"
     t.string "isbn13"
     t.string "isbn"
     t.datetime "created_at", precision: 6, null: false

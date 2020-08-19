@@ -1,4 +1,7 @@
-
+require 'pry'
+require "net/http"
+require "json"
+require "httparty"
 
 class BookRecord < ApplicationRecord
   has_many :books
@@ -21,12 +24,28 @@ class BookRecord < ApplicationRecord
       response = RestClient.get("https://api2.isbndb.com/book/#{isbn_string}", headers={'Authorization': key})
       result = JSON.parse(response.body)
       title=result["book"]["title"]
-      author=result["book"]["authors"].join(",").first
-      img_url=result["book"]["image"]
+      author=result["book"]["authors"].uniq.join
+
+
+      # binding.pry
+      # url = URI.parse(result["book"]["image"])
+      # req = Net::HTTP.new(url.host, url.port)
+      # res = req.request_head(url.path)
+      # res = RestClient.get(result["book"]["image"]){|response, request, result| response }.code
+
+      # if res == 404
+      #   img_url = "https://firstfreerockford.org/wp-content/uploads/2018/08/placeholder-book-cover-default.png"
+      # # elsif res.code == "200"
+      img_url = result["book"]["image"]
+      replace= "https://firstfreerockford.org/wp-content/uploads/2018/08/placeholder-book-cover-default.png"
+      img_url = replace if RestClient.get(img_url){|response, request, result| response }.code == 404
+      # if RestClient.get(img_url){|response, request, result| response }.code == 200
       isbn13=result["book"]["isbn13"]
       isbn=result["book"]["isbn"]
       result["book"]["synopsis"] ? synopsis=result["book"]["synopsis"] : synopsis="The synopsis is not available"
-      simple = {title:title,author: author,synopsis:synopsis, img_url:img_url,isbn13:isbn13, isbn:isbn}
+      simple = {title:title,author: author,synopsis:synopsis, img_url: img_url,isbn13:isbn13, isbn:isbn}
+      # binding.pry
+      # simple = {title:title,author: author,synopsis:synopsis, img_url:img_url,isbn13:isbn13, isbn:isbn}
     end
 
     def self.populate_by_author(author)
@@ -34,6 +53,19 @@ class BookRecord < ApplicationRecord
       response = RestClient.get("https://api2.isbndb.com/author/#{author}", headers={'Authorization': key})
       result = JSON.parse(response.body)
       results =result["books"] 
+    end
+
+    def self.image_checker
+      BookRecord.all.each do |record|
+        record.img_url = "https://firstfreerockford.org/wp-content/uploads/2018/08/placeholder-book-cover-default.png" if RestClient.get(record.img_url){|response, request, result| response }.code == 404
+        record.save
+      end
+    end
+
+    def self.image_count
+      BookRecord.all.map do |record|
+        RestClient.get(record.img_url){|response, request, result| response }.code
+      end
     end
 
 end
