@@ -1,0 +1,7 @@
+<%= render partial: 'book_record' , locals: {book_record: @book_record} %>
+<%=render partial: 'book_records2', locals: {book_record: @book_record} %>
+
+<br>
+<br>
+<!--<%= link_to 'Delete this record', @book_record, method: :delete, data:{confirm:'For real?'} %>-->
+<%= button_to 'Delete this record', @book_record, method: :delete, data:{confirm:'For real?'} %>

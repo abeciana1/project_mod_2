@@ -19,12 +19,13 @@ Dotenv.load
 # book_isbns2 = ("9780545010221,9780590353427,9780747532743,9780747532743,8498386314").split(",")
 # book_isbns = book_isbns+book_isbns2+book_isbns1
 # records=book_isbns.map{|record|BookRecord.populate(record)}
-# # binding.pry
 # creation_line=records.each{|record|BookRecord.find_or_create_by(record)}
 
 # results=BookRecord.populate_by_author("rowling")
 # # binding.pry
+
 # results=results.map{|b|{title:b["title"],author: "J.K. Rowling",synopsis:(b["synopsis"] ? b["synopsis"] : "The synopsis is not available"), img_url:b["image"],isbn13:b["isbn13"], isbn:b["isbn"]}}
+
 # results.each{|record|BookRecord.find_or_create_by(record)}
 
 # users="greg,alexS,Tashawn,IanG,James,IanR,Jennifer,Alex,Junko,RyanW,Karan,SeMin,JakeL,Brian,Devin,Muhtasim,Josh,DavidKir,Amit,JakeM,Victor,Kevin,RyanF,Vincent,DavidK,Ward,Codyd,RyanL,Matthew,Gregory,Codyc,Mimi,Minelie,Joseph,Samuel,Sawandi,Iuri,Jzavier,Israel,Vlad,Teddy"
@@ -79,13 +80,14 @@ Dotenv.load
 #     Book.create(book_record_id:BookRecord.all.sample.id,pergola_id:Pergola.all.sample.id,user_id:User.all.sample.id, count:rand(50..100))
 # end
 
-# # binding.pry
+# BookRecord.populate(9780060731328)
+# 006073132X
 
-# p BookRecord.count
-# p Pergola.count
-# p User.count
-# p Book.count
-# puts "cash Money"
+p BookRecord.count
+p Pergola.count
+p User.count
+p Book.count
+puts "cash Money"
 
 # BookRecord.image_checker
 binding.pry

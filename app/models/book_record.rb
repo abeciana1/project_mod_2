@@ -7,9 +7,8 @@ class BookRecord < ApplicationRecord
   has_many :books
   has_many :pergolas, through: :books
   has_many :users, through: :books
-  validates :isbn13, uniqueness: true
-  validates_uniqueness_of :isbn13, :allow_nil => true, :allow_blank => true
-  validates_uniqueness_of :isbn, :allow_nil => true, :allow_blank => true
+  # validates_uniqueness_of :isbn13, :allow_nil => true, :allow_blank => true
+  # validates_uniqueness_of :isbn, :allow_nil => true, :allow_blank => true
 
     def self.search(query)
         if query.present?
@@ -21,31 +20,23 @@ class BookRecord < ApplicationRecord
 
     def self.populate(isbn_string)
       key = ENV["ISBN_API_KEY"]
-      response = RestClient.get("https://api2.isbndb.com/book/#{isbn_string}", headers={'Authorization': key})
+      response = RestClient.get("https://api2.isbndb.com/book/#{isbn_string}", headers={'Authorization': key}){|response, request, result| response }
       result = JSON.parse(response.body)
+      if result["book"]
       title=result["book"]["title"]
       author=result["book"]["authors"].uniq.join
 
-
-      # binding.pry
-      # url = URI.parse(result["book"]["image"])
-      # req = Net::HTTP.new(url.host, url.port)
-      # res = req.request_head(url.path)
-      # res = RestClient.get(result["book"]["image"]){|response, request, result| response }.code
-
-      # if res == 404
-      #   img_url = "https://firstfreerockford.org/wp-content/uploads/2018/08/placeholder-book-cover-default.png"
-      # # elsif res.code == "200"
       img_url = result["book"]["image"]
       replace= "https://firstfreerockford.org/wp-content/uploads/2018/08/placeholder-book-cover-default.png"
       img_url = replace if RestClient.get(img_url){|response, request, result| response }.code == 404
-      # if RestClient.get(img_url){|response, request, result| response }.code == 200
+
       isbn13=result["book"]["isbn13"]
       isbn=result["book"]["isbn"]
       result["book"]["synopsis"] ? synopsis=result["book"]["synopsis"] : synopsis="The synopsis is not available"
-      simple = {title:title,author: author,synopsis:synopsis, img_url: img_url,isbn13:isbn13, isbn:isbn}
-      # binding.pry
-      # simple = {title:title,author: author,synopsis:synopsis, img_url:img_url,isbn13:isbn13, isbn:isbn}
+      simple = {title:title,author: author,synopsis:synopsis, img_url:img_url,isbn13:isbn13, isbn:isbn}
+      else 
+        false
+      end
     end
 
     def self.populate_by_author(author)
