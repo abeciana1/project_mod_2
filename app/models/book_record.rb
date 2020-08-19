@@ -7,8 +7,9 @@ class BookRecord < ApplicationRecord
   has_many :books
   has_many :pergolas, through: :books
   has_many :users, through: :books
-  # validates_uniqueness_of :isbn13, :allow_nil => true, :allow_blank => true
-  # validates_uniqueness_of :isbn, :allow_nil => true, :allow_blank => true
+  validates :title, :author, presence: true
+  validates_uniqueness_of :isbn13, :allow_nil => true, :allow_blank => true
+  validates_uniqueness_of :isbn, :allow_nil => true, :allow_blank => true
 
     def self.search(query)
         if query.present?
