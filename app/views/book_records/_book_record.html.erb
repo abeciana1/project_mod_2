@@ -1,6 +1,7 @@
 <ul>
-    <li>Title: <%= book_record.title %></li>
+    <li>Title: <%= link_to book_record.title, book_record_path(book_record) %></li>
     <li>Author: <%= book_record.author %></li>
     <li>Synopis: <%= book_record.synopsis %></li>
+    <%= book_record.img_url %>
     <div style="text-align: left"><img class="book-record-search" src="<%= book_record.img_url %>" > </div>
 </ul>

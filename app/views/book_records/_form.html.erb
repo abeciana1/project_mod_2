@@ -1,0 +1,40 @@
+<%if flash[:my_errors] %>
+    <%flash[:my_errors].each do |e|%>
+        <%=e%>
+    <%end%>    
+<%end%>
+
+<%= form_for @book_record do |f| %>
+<p>
+<%= f.label :title%>
+<%= f.text_field :title %>
+</p>
+<p>
+<%= f.label :author%>
+<%= f.text_field :author %>
+</p>
+<p>
+<%= f.label :synopsis%>
+<%= f.text_field :synopsis %>
+</p>
+<p>
+<%= f.label :img_url%>
+<%= f.text_field :img_url %>
+</p>
+<p>
+<%= f.label "Type the ISBN HERE"%> 
+<%= f.text_field :isbn13 %>
+</p>
+<p>
+<%if @book_record.id!=nil%>
+    <%= f.label :isbn %>
+    <%= f.text_field :isbn %>
+<% else %>
+    <% f.label :isbn %>
+    <% f.text_field :isbn %>
+<% end %>
+</p>
+<p>
+<%= f.submit %>
+</p>
+<% end %>
