@@ -25,7 +25,7 @@ class BookRecordsController < ApplicationController
     private
         
     def find_book_record
-        @book_record = book_record.find(params[:id])
+        @book_record = BookRecord.find(params[:id])
     end
     
     def book_records_params
