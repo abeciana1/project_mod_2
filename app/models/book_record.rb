@@ -7,8 +7,9 @@ class BookRecord < ApplicationRecord
   has_many :books
   has_many :pergolas, through: :books
   has_many :users, through: :books
-  # validates_uniqueness_of :isbn13, :allow_nil => true, :allow_blank => true
-  # validates_uniqueness_of :isbn, :allow_nil => true, :allow_blank => true
+  validates :title, :author, presence: true
+  validates_uniqueness_of :isbn13, :allow_nil => true, :allow_blank => true
+  validates_uniqueness_of :isbn, :allow_nil => true, :allow_blank => true
 
     def self.search(query)
         if query.present?
@@ -25,11 +26,9 @@ class BookRecord < ApplicationRecord
       if result["book"]
       title=result["book"]["title"]
       author=result["book"]["authors"].uniq.join
-
       img_url = result["book"]["image"]
       replace= "https://firstfreerockford.org/wp-content/uploads/2018/08/placeholder-book-cover-default.png"
       img_url = replace if RestClient.get(img_url){|response, request, result| response }.code == 404
-
       isbn13=result["book"]["isbn13"]
       isbn=result["book"]["isbn"]
       result["book"]["synopsis"] ? synopsis=result["book"]["synopsis"] : synopsis="The synopsis is not available"

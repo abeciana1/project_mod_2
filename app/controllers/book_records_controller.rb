@@ -12,18 +12,18 @@ class BookRecordsController < ApplicationController
     def show; end
     
     def create
-        # session[:params]=book_record_params[:isbn13]
-        # isbn13 = BookRecord.populate(book_record_params[:isbn13])
-        # lookup = BookRecord.populate(@book_record.isbn13)
-        byebug
-        # if isbn13 !=false
-        #     book_record_params=isbn13
-        # end
         @book_record = BookRecord.create(book_record_params)
         lookup = BookRecord.populate(@book_record.isbn13)
-        @book_record.update(lookup)
+        if lookup
+            @book_record.update(lookup)
+        else 
+            @book_record.isbn="flt"+Time.now.to_i.to_s
+            @book_record.isbn13="flt"+Time.now.to_i.to_s
+            @book_record.save
+        end
         if @book_record.valid?
-            redirect_to edit_book_record_path(@book_record)
+            flash[:book]=[@book_record,"Please add #{@book_record.title} to a Pergola"]
+            redirect_to new_book_path
         else
             flash[:my_errors] = @book_record.errors.full_messages
             redirect_to new_book_record_path
