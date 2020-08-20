@@ -1,16 +1,22 @@
 class UsersController < ApplicationController
-    before_action :find_user [:show, :edit, :update, :destroy]
-    
+    before_action :find_user, only: [:show, :edit, :update, :destroy]
+    # skip_before_action :authorized, only: [:new, :home, :contact, :about]
+
     def home
+        
     end
 
     def contact
+        
     end
 
     def about
+        
     end
 
-    def show;end
+    def show
+        @user = User.find(params[:id])
+    end
     
     def index
         @users = User.all
@@ -23,9 +29,11 @@ class UsersController < ApplicationController
     def create
         @user = User.create(user_params)
         if @user.valid?
-            redirect_to users_path
+            # session[:user_id]=@user.id
+            @current_user = @user
+            redirect_to '/'
         else
-            flash[:errors]=@user.errors.full_messages
+            flash[:my_errors]=@user.errors.full_messages
             redirect_to new_user_path
         end
     end
@@ -33,11 +41,11 @@ class UsersController < ApplicationController
     def edit;end
 
     def update
-        @user =User.update(user_params)
+        @user =@User.update(user_params)
         if @user.update?
-            redirect_to users_path
+            redirect_to user_path
         else
-            flash[:errors]=@user.errors.full_messages
+            flash[:my_errors]=@user.errors.full_messages
             redirect_to edit_user_path
         end
     end
@@ -49,11 +57,11 @@ class UsersController < ApplicationController
     
     private
     def find_user
-        @user = User.find(user_params[:id])
+        @user = User.find(params[:id])
     end
     
     def user_params
-        params.require(:user).permit(:name, :password_digest, :email)
+        params.require(:user).permit(:name, :password, :email, :admin)
     end
 
 end

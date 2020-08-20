@@ -35,6 +35,15 @@
 <% end %>
 </p>
 <p>
+    <label>Feature this book reccord on the homepage?</label>
+    <br>
+    <br>
+    <label>On Homepage:</label>
+    <!-- <%= f.check_box :featured, {}, 'true', 'false' %> -->
+    <!-- <label>Remove from Homepage:</label> -->
+    <%= f.check_box :featured, {}, checked_value = true, unchecked_value = false %>
+</p>
+<p>
 <%= f.submit %>
 </p>
 <% end %>
