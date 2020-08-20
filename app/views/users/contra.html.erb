@@ -1,0 +1,19 @@
+<h1>Contra</h1>
+
+<p><%= session[:contra] %></p>
+
+<%= form_tag verify_path, method: :put do %>
+    <label>Code:</label>
+    <%= text_field_tag :query, params[:query], placeholder: 'Code' %>
+    <%= submit_tag "Secret Submit" %>
+<% end %>
+
+
+
+<!-- <%= form_for @user, method: :put do |f| %>
+    <label>Code: </label><br>
+    <%= f.text_field :name %>
+    <br />
+    <br />
+    <%= f.submit %>
+<% end %> -->

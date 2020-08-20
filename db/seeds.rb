@@ -72,8 +72,8 @@ pergolas=[{
 
 pergolas.each{|p|Pergola.create!(p)}
 
-300.times do
-    Book.create(book_record_id:BookRecord.all.sample.id,pergola_id:Pergola.all.sample.id, count:rand(50..100))
+100.times do
+    Book.create(book_record_id:BookRecord.all.sample.id,pergola_id:Pergola.all.sample.id, count:rand(1..50))
 end
 
 BookRecord.image_checker
