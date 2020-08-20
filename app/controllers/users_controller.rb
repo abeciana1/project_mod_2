@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
     before_action :find_user, only: [:show, :edit, :update, :destroy]
+    skip_before_action :authorized, only: [:new, :home, :contact, :about]
+
     
     def home
     end
@@ -22,7 +24,11 @@ class UsersController < ApplicationController
 
     def create
         @user = User.create(user_params)
-        # byebug
+        byebug
+        @user.admin=false
+        @user.save
+        byebug
+        session[:user_id] = user.id 
         if @user.valid?
             redirect_to pergolas_path
         else

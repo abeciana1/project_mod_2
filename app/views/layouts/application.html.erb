@@ -21,7 +21,14 @@
       <!-- <div class="nav-item" style="text-align: "><a href="/">Login</a></div> -->
       <!-- add singup / login button  -->
     </div>
-
+      <ul> <%if @current_user %>
+        <li class='righto'>Welcome <%=@current_user.name%></li>
+        <li class='righto'><%= link_to  "Log-out", logout_path, method: :delete %></li>
+        <%else%>
+        <li class='righto'><%= link_to  "sign-up", new_user_path%></li>
+        <li class='righto'><%= link_to  "sign-In", new_login_path%></li>
+        <% end %>
+      </ul>
     <!-- <div class="wrapper"> -->
     <%= yield %>
     

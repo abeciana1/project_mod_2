@@ -1,5 +1,7 @@
 class PergolasController < ApplicationController
     before_action :find_pergola, only: [:show, :edit, :update, :delete]
+    skip_before_action :authorized, only: [:index, :show]
+
     
     def index
         @pergolas = Pergola.all
