@@ -7,6 +7,7 @@ class CreateBookRecords < ActiveRecord::Migration[6.0]
       t.string :img_url
       t.string :isbn13
       t.string :isbn
+      t.boolean :feature, :default => false 
 
       t.timestamps
     end

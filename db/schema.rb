@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_08_19_030703) do
     t.string "img_url", default: "app/assets/images/placeholder-book-cover-default (1).png"
     t.string "isbn13"
     t.string "isbn"
+    t.boolean "feature", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -26,7 +27,6 @@ ActiveRecord::Schema.define(version: 2020_08_19_030703) do
   create_table "books", force: :cascade do |t|
     t.integer "book_record_id"
     t.integer "pergola_id"
-    t.integer "user_id"
     t.integer "count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_08_19_030703) do
     t.string "name"
     t.string "password_digest"
     t.string "email"
+    t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
