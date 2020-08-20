@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :find_user [:show, :edit, :update, :destroy]
+    before_action :find_user, only: [:show, :edit, :update, :destroy]
     
     def home
     end
@@ -22,10 +22,11 @@ class UsersController < ApplicationController
 
     def create
         @user = User.create(user_params)
+        # byebug
         if @user.valid?
-            redirect_to users_path
+            redirect_to pergolas_path
         else
-            flash[:errors]=@user.errors.full_messages
+            flash[:my_errors]=@user.errors.full_messages
             redirect_to new_user_path
         end
     end
@@ -49,11 +50,11 @@ class UsersController < ApplicationController
     
     private
     def find_user
-        @user = User.find(user_params[:id])
+        @user = User.find(params[:id])
     end
     
     def user_params
-        params.require(:user).permit(:name, :password_digest, :email)
+        params.require(:user).permit(:name, :password, :password_confirmation, :email, :admin)
     end
 
 end
