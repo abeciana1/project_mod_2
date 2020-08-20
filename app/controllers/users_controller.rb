@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :find_user, only: [:show, :edit, :update, :destroy]
-    skip_before_action :authorized, only: [:new, :home, :contact, :about]
+    skip_before_action :authorized, only: [:new, :home, :contact, :about,:create]
 
     
     def home
@@ -24,12 +24,10 @@ class UsersController < ApplicationController
 
     def create
         @user = User.create(user_params)
-        byebug
         @user.admin=false
         @user.save
-        byebug
-        session[:user_id] = user.id 
         if @user.valid?
+            session[:user_id] = @user.id 
             redirect_to pergolas_path
         else
             flash[:my_errors]=@user.errors.full_messages
