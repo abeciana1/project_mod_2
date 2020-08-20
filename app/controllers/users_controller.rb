@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :find_user, only: [:show, :edit, :update, :destroy]
-    # skip_before_action :authorized, only: [:new, :home, :contact, :about]
+    skip_before_action :authorized, only: [:new, :home, :contact, :about,:create]
 
     def home
         
@@ -28,10 +28,11 @@ class UsersController < ApplicationController
 
     def create
         @user = User.create(user_params)
+        @user.admin=false
+        @user.save
         if @user.valid?
-            # session[:user_id]=@user.id
-            @current_user = @user
-            redirect_to '/'
+          session[:user_id] = @user.id 
+          redirect_to '/'
         else
             flash[:my_errors]=@user.errors.full_messages
             redirect_to new_user_path
@@ -61,7 +62,7 @@ class UsersController < ApplicationController
     end
     
     def user_params
-        params.require(:user).permit(:name, :password, :email, :admin)
+        params.require(:user).permit(:name, :password, :password_confirmation, :email, :admin)
     end
 
 end

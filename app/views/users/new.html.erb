@@ -1,8 +1,8 @@
-
 <%if flash[:my_errors] %>
 <%flash[:my_errors].each do |e|%>
     <%=e%>
 <%end%>    
+
 <%end%>
 
 <%= form_for @user do |f| %>
@@ -10,11 +10,17 @@
 <%= f.label :name%>
 <%= f.text_field :name %>
 
-<%= f.label :password %>
-<%= f.text_field :password_digest %>
 
 <%= f.label :email%>
 <%= f.text_field :email %>
+
+<%= f.label :password%>
+<%= f.text_field :password%>
+
+<%= f.label :password_confirmation%>
+<%= f.text_field :password_confirmation%>
+
+<%= f.hidden_field :admin %>
 
 <%= f.submit %>
 
