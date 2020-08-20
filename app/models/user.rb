@@ -8,4 +8,11 @@ class User < ApplicationRecord
     validates :email, uniqueness: true 
     validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
 
+    @@admin_level = "uuddlrlrbas"
+    
+    def self.verification
+        @@admin_level
+    end
+
+
 end

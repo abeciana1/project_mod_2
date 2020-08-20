@@ -38,6 +38,23 @@ class UsersController < ApplicationController
             redirect_to new_user_path
         end
     end
+
+    def contra
+        @user = User.new
+        session[:contra] = "What is the password?"
+    end
+
+    def verify
+        # byebug
+        if params[:query] == User.verification
+            @current_user.admin = true
+            @current_user.save
+            session[:success] = "You're now an admin"
+            redirect_to '/'
+        else
+            redirect_to '/'
+        end
+    end
     
     def edit;end
 
@@ -51,7 +68,7 @@ class UsersController < ApplicationController
         end
     end
 
-    def delete
+    def destroy
         @user.destroy
         redirect_to users_path
     end
