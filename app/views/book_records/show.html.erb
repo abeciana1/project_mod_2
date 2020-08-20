@@ -2,7 +2,7 @@
 <%= button_to 'Edit this record', edit_book_record_path(@book_record), :method => :get, data:{confirm:'edit'} %>
 <%= button_to 'Delete this record', @book_record, method: :delete, data:{confirm:'For real?'} %>
 
-<h1 style="text-align: center"> <%= @book_record.title %> </h1>
+<h1 class="page-header"> <%= @book_record.title %> </h1>
 <p>
     <table class="book-record-show-result" style="width: 95%">
         <tr>
