@@ -1,10 +1,20 @@
-<h1>Our Pergolas</h1>
+<body id="pergola-index">
+  <h1 class="page-header">Our Pergolas</h1>
 <% @pergolas.each do |pergola| %>
-  <p><%= link_to pergola.name, pergola_path(pergola)%>:<br>
+  <p><b><%= link_to pergola.name, pergola_path(pergola)%></b> // We're located at <%= "#{pergola.address1}, #{pergola.city}, #{pergola.state} #{pergola.zip_code}"  %><br>
   has <%=pergola.books.map{|b|b.count}.sum%> books for our community<br>
   has <%=pergola.book_records.uniq.count%> different books for our community<br>
   </p>
 <% end %>
 
+</body>
+
 <!-- If logged in - can click into show page  -->
-<!-- If not logged in - create an account ->
+<!-- If not logged in - create an account -->
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

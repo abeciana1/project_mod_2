@@ -1,0 +1,51 @@
+<% if flash[:my_errors]%>
+    <% flash[:my_errors].each do |error|%>
+    <div style='color: red;'><%= error %></div><br>
+    <% end %>
+<% end %>
+
+<%= form_for @pergola do |f| %>
+    <label>Name: </label>
+    <%= f.text_field :name %>
+    <br />
+    <br />
+    <label>Address Line 1: </label>
+    <%= f.text_field :address1 %>
+    <br />
+    <br />
+    <label>Address Line 2: </label>
+    <%= f.text_field :address2 %>
+    <br />
+    <br />
+    <label>City: </label>
+    <%= f.text_field :city %>
+    <br />
+    <br />
+    <label>State: </label>
+    <%= f.select :state, options_for_select([["Select One"],"Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]), :class => 'pergolas' %>
+    <br />
+    <br />
+    <label>Zip Code: </label>
+    <%= f.number_field :zip_code %>
+    <br />
+    <br />
+    <%= f.submit "Submit"%>
+<% end %>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
