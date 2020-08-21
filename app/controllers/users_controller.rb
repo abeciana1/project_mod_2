@@ -51,7 +51,6 @@ class UsersController < ApplicationController
     end
 
     def verify
-        # byebug
         if params[:query] == User.verification
             @current_user.admin = true
             @current_user.save
