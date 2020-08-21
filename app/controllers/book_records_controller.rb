@@ -36,6 +36,8 @@ class BookRecordsController < ApplicationController
                 params[:author]
                 @book_record=BookRecord.populate(params[:author])
                 @book_record=BookRecord.create(@book_record)
+                @book_record.feature=true
+                @book_record.save
                 flash[:book]=[@book_record,"Please add #{@book_record.title} to a Pergola"]
                 redirect_to new_book_path
             end
