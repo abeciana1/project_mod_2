@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
   get '/contra', to: 'users#contra'
   put '/verify', to: 'users#verify', as: 'verify'
+
+  get '/search_authors', to: 'book_records#search_authors', as: 'authors_search'
+  put '/create_books', to: 'book_records#create_books', as: 'create_books'
+  
   # get '/login', to: 'session#login'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

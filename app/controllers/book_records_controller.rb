@@ -12,6 +12,23 @@ class BookRecordsController < ApplicationController
     end
     
     def show; end
+
+    def search_authors 
+        @book_record = BookRecord.new
+    end
+
+    def create_books
+        if params[:author]
+            @lookup = BookRecord.populate_by_author(params[:author])
+            if @lookup
+                flash[:lookup]=@lookup
+                redirect_to search_authors
+            else
+                flash[:my_errors] = "Search Results failed. Could be for many reasons"
+                redirect_to search_authors
+            end
+        end
+    end
     
     def create
         @book_record = BookRecord.create(book_record_params)

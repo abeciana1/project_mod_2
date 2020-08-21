@@ -1,0 +1,28 @@
+<h1>Please Search for Authors Here</h1>
+
+<%if flash[:my_errors] %>
+    <%=flash[:my_errors]%>
+<%end%>
+
+<%= form_tag create_books_path, method: :put do %>
+    <label>Search for authors:</label>
+    <%= text_field_tag :author, params[:author]%>
+    <%= submit_tag "Search" %>
+<% end %>
+
+<%if flash[:lookup]%>
+    <%flash[:lookup]%>
+<%end%>
+
+<!--<%= form_for :@book_record, :url=> create_books_path do |f| %>
+<%= f.hidden_field :title %>
+<%= f.label :author%>
+<%= f.text_field :author %>
+<%= f.hidden_field :synopsis %>
+<%= f.hidden_field :img_url %>
+<%= f.hidden_field :isbn %>
+<% f.hidden_field :isbn %>
+<%= f.hidden_field :featured %>
+<%= f.submit "Search Authors"%>
+</p>
+<% end %> -->

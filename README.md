@@ -31,7 +31,8 @@ g. book_records#new - Our voluntters can also 'add record' to our data base. Thi
 4. Our book_record database is derived from the API. We have the ability to draw from the API
 a. Typing a ISBN or an ISBN into our database will prompt our system to look up the ISBN/ISBN13 from the API. If the book is in the database, information from the database will completely override the inputs of the user. If the book does not exists, the details that the volunteer has inputted will be used to create a new book. The flt prefix is for all books that we were not able to find in our database
 b. Upon creation, the volunteer will be brought to a page where they have to assign the book to the Pergola of choice. Our volunteers must be careful when creating books. If they are clumsy like me, they will just need to go, find their Frankensteinian creation, and KILL IT!!! (delete it from our database)
-c. 
+
+5. 
 
 
 
