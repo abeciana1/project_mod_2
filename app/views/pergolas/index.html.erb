@@ -6,7 +6,11 @@
   has <%=pergola.book_records.count%> different books for our community<br>
   </p>
 <% end %>
-
+    <%if @current_user%>
+      <%if @current_user.admin==true %>
+        <strong><%= link_to  "Add A New Pergola", new_pergola_path %></strong>
+      <%end%>
+    <%end%>
 </body>
 
 <!-- If logged in - can click into show page  -->

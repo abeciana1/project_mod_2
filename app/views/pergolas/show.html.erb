@@ -4,6 +4,8 @@
 </div> -->
 
 <h1><%= @pergola.name %></h1>
+<%= link_to 'Edit Pergola Details', edit_pergola_path if @current_user.admin==true%>
+<%= link_to 'BullDoze Pergola', @pergola, method: :delete, data:{confirm:'For real?'} if @current_user.admin==true %>
 
 <p>We're located at: <%= "#{@pergola.address1}, #{@pergola.city}, #{@pergola.state} #{@pergola.zip_code}"  %></p>
 <br />
