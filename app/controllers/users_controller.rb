@@ -12,7 +12,11 @@ class UsersController < ApplicationController
     def about
     end
 
-    def show;end
+    def show
+        if @current_user != @user
+            redirect_to user_path(@current_user)
+        end
+    end
     
     def index
         @users = User.all

@@ -8,12 +8,22 @@
 <p>We're located at: <%= "#{@pergola.address1}, #{@pergola.city}, #{@pergola.state} #{@pergola.zip_code}"  %></p>
 <br />
 <br />
-<h2>Check the books at this location:</h2>
 <% books=@pergola.books %>
-<% @pergola.book_records.each do |book_record| %>
+
+<h2>Check the <%= books.map{|b|b.count}.sum%> books at this location:</h2>
+<% books_more_than_0= @pergola.books.select{|b|b.count>0}.map{|b|b.book_record} %>
+<% books_more_than_0.sort_by! { |m| m.title }.each do |book_record| %>
   <%= render partial: 'book_records/book_record', locals: {book_record: book_record} %>
   <%@book=books.find_by(book_record_id: book_record.id)%> 
   
-  <%=link_to @book.count, edit_book_path(@book)%> at this Pergola <!-- Disabled for logged in users except Admin -->
-  <p><%= @book.count %> at this Pergola</p> <!-- shown for users -->
+  <p>
+  There are 
+  <%if @current_user.admin==true %>
+      <%=link_to @book.count, edit_book_path(@book)%>
+  <%else%>
+      <%= @book.count %>
+  <%end%>
+  at this pergola
+  <p>
+  
 <% end %>

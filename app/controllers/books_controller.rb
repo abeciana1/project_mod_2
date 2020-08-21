@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+    before_action :authorized_admin
 
     def new
         @book = Book.new
