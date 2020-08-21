@@ -19,13 +19,25 @@ class BookRecordsController < ApplicationController
 
     def create_books
         if params[:author]
-            @lookup = BookRecord.populate_by_author(params[:author])
-            if @lookup
-                flash[:lookup]=@lookup
-                redirect_to search_authors
+            if params[:author].to_i == 0
+                @lookup = BookRecord.populate_by_author(params[:author])
+                if @lookup  
+                    @lookup= @lookup.map{|l|array=[l["title"],l["authors"],l["isbn13"]]}
+                    params[:author]=@lookup
+                    # session[:look]=@lookup
+                    #@lookup.map{|l|array=l["title"],l["authors"],l["isbn13"]]}
+                    
+                    render 'search_authors'
+                else
+                    flash[:my_errors] = "Search Results failed. Could be for many reasons"
+                    redirect_to '/search_authors/'
+                end
             else
-                flash[:my_errors] = "Search Results failed. Could be for many reasons"
-                redirect_to search_authors
+                params[:author]
+                @book_record=BookRecord.populate(params[:author])
+                @book_record=BookRecord.create(@book_record)
+                flash[:book]=[@book_record,"Please add #{@book_record.title} to a Pergola"]
+                redirect_to new_book_path
             end
         end
     end

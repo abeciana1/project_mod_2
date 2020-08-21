@@ -40,7 +40,7 @@ class BookRecord < ApplicationRecord
 
     def self.populate_by_author(author)
       key = ENV["ISBN_API_KEY"]
-      response = RestClient.get("https://api2.isbndb.com/author/#{author}", headers={'Authorization': key})
+      response = RestClient.get("https://api2.isbndb.com/author/#{author}?pageSize=1000", headers={'Authorization': key})
       result = JSON.parse(response.body)
       results =result["books"] 
     end

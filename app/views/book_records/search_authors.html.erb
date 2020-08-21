@@ -10,10 +10,13 @@
     <%= submit_tag "Search" %>
 <% end %>
 
-<%if flash[:lookup]%>
-    <%flash[:lookup]%>
+</ul>
+<%if params[:author]%>
+    <%params[:author].each do |x|%>
+   <li> Title: <%=x[0]%> Author: <%=x[1]%> ISBN13: <%=x[2]%></li>
+   <%end%>
 <%end%>
-
+<ul>
 <!--<%= form_for :@book_record, :url=> create_books_path do |f| %>
 <%= f.hidden_field :title %>
 <%= f.label :author%>
