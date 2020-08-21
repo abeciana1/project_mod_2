@@ -24,9 +24,9 @@ a. Our users(volunteers) will be update their profile to become an admin (unpaid
 b. The Nav bar of our volunteers are updated to reflect their new responsibilities
 c. Book_Record#Show - Our volunteers will see buttons to edit and delete the record
 d. Books#new - They can also allocate books to pergolas // If a book already exists in a Pergola, our volunteers will be given a link to go edit the quantity at the Pergola location. If the book does not exists in the Pergola, the connection will be made. 
-e. Pergolas#show - They can also access the individual pergola page and click on a now 'visible link' to update the quantity
+e. pergolas#show - They can also access the individual pergola page and click on a now 'visible link' to update the quantity. They can also edit the details of the pergola. They can also 'bulldoze' for the pergola. 
 f. Users#index - Our volunteers can go to the 'Manage Users' page to update and delete users
-g. book_records#new - Our voluntters can also 'add record' to our data base. This  is a powerful feature
+g. book_records#new - Our voluntters can also 'add record' to our data base. This is a powerful feature
 
 4. Our book_record database is derived from the API. We have the ability to draw from the API
 a. Typing a ISBN or an ISBN into our database will prompt our system to look up the ISBN/ISBN13 from the API. If the book is in the database, information from the database will completely override the inputs of the user. If the book does not exists, the details that the volunteer has inputted will be used to create a new book. The flt prefix is for all books that we were not able to find in our database

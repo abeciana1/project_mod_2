@@ -30,8 +30,13 @@ class PergolasController < ApplicationController
     end
     
     def update
-        @pergola.update(pergola_params)
-        redirect_to pergola_path(@pergola)
+        if pergola.save?
+            @pergola.update(pergola_params)
+            redirect_to pergola_path(@pergola)
+        else
+            flash[:my_errors] = @pergola.errors.full_messages
+            redirect_to edit_pergola_path
+        end
     end
     
     def delete
@@ -46,8 +51,6 @@ class PergolasController < ApplicationController
     end
     
     def pergola_params
-        params.require(:pergola).permit(:name)
-    end
-    
-    
+        params.require(:pergola).permit(:name, :address1, :address2, :city, :state, :zip_code)
+    end    
 end
