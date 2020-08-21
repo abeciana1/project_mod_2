@@ -1,5 +1,6 @@
 class BookRecordsController < ApplicationController
     before_action :find_book_record, only: [:show, :edit, :update, :destroy]
+    before_action :authorized_admin, except: [:show, :index]
     
     def index
         @book_records = BookRecord.search(params[:query])

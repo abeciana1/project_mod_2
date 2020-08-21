@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
     def authorized
         redirect_to home_path unless set_current_user 
     end 
+
+    def authorized_admin
+        redirect_to home_path unless set_current_user.admin == true
+    end
 end

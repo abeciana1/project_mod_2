@@ -24,9 +24,9 @@ results=BookRecord.populate_by_author("rowling")
 results=results.map{|b|{title:b["title"],author: "J.K. Rowling",synopsis:(b["synopsis"] ? b["synopsis"] : "The synopsis is not available"), img_url:b["image"],isbn13:b["isbn13"], isbn:b["isbn"]}}
 results.each{|record|BookRecord.find_or_create_by(record)}
 
-# users="greg,alexS,Tashawn,IanG,James,IanR,Jennifer,Alex,Junko,RyanW,Karan,SeMin,JakeL,Brian,Devin,Muhtasim,Josh,DavidKir,Amit,JakeM,Victor,Kevin,RyanF,Vincent,DavidK,Ward,Codyd,RyanL,Matthew,Gregory,Codyc,Mimi,Minelie,Joseph,Samuel,Sawandi,Iuri,Jzavier,Israel,Vlad,Teddy"
-# users=users.split(",")
-# users.each{|u|User.create(name:u, password_digest:"1234",email:"#{u}@flat.com")}
+users="greg,alexS,Tashawn,IanG,James,IanR,Jennifer,Alex,Junko,RyanW,Karan,SeMin,JakeL,Brian,Devin,Muhtasim,Josh,DavidKir,Amit,JakeM,Victor,Kevin,RyanF,Vincent,DavidK,Ward,Codyd,RyanL,Matthew,Gregory,Codyc,Mimi,Minelie,Joseph,Samuel,Sawandi,Iuri,Jzavier,Israel,Vlad,Teddy"
+users=users.split(",")
+users.each{|u|User.create(name:u, password_digest:"123456",email:"#{u}@flat.com")}
 
 pergolas=[{
     name: Faker::Games::Witcher.location,
@@ -72,8 +72,8 @@ pergolas=[{
 
 pergolas.each{|p|Pergola.create!(p)}
 
-100.times do
-    Book.create(book_record_id:BookRecord.all.sample.id,pergola_id:Pergola.all.sample.id, count:rand(1..50))
+300.times do
+    Book.create(book_record_id:BookRecord.all.sample.id,pergola_id:Pergola.all.sample.id, count:rand(1..10))
 end
 
 BookRecord.image_checker

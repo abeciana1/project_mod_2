@@ -13,9 +13,9 @@ class BookRecord < ApplicationRecord
 
     def self.search(query)
         if query.present?
-          where('TITLE like ?', "%#{query}%")
+          where('TITLE like ?', "%#{query}%").order('title ASC')
         else
-          self.all
+          self.all.sort_by{|b|b.title}
         end
     end
 
