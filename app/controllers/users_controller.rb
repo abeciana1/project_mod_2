@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     before_action :find_user, only: [:show, :edit, :update, :destroy]
     skip_before_action :authorized, only: [:new, :home, :contact, :about,:create]
+    before_action :authorized_admin, only: [:index]
 
     def home
         
@@ -25,6 +26,9 @@ class UsersController < ApplicationController
     end
     
     def new
+        if @current_user 
+            redirect_to user_path(@current_user)
+        end
         @user = User.new
     end
 
@@ -61,8 +65,8 @@ class UsersController < ApplicationController
     def edit;end
 
     def update
-        @user =@User.update(user_params)
-        if @user.update?
+        @user.update(user_params)
+        if @user.save
             redirect_to user_path
         else
             flash[:my_errors]=@user.errors.full_messages

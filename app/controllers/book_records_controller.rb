@@ -8,6 +8,7 @@ class BookRecordsController < ApplicationController
     
     def new
         @book_record = BookRecord.new
+        @book
     end
     
     def show; end

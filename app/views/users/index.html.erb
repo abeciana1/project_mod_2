@@ -1,0 +1,5 @@
+<%if @users %>
+    <%@users.each do |u|%>
+        <br><%=u.name.capitalize%> <%= u.email%> <%=u.admin%> <%= link_to 'Delete', u, method: :delete, data:{confirm:'For Sure?'} %><br>
+    <%end%>
+<%end%>

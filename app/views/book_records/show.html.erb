@@ -9,11 +9,15 @@
             <td><img class="book-record-show-details" src="<%= @book_record.img_url %>" alt="<%= @book_record.title %>"></td>
             <td>
                 <ul style="padding-inline-start: 100px">
-                    <p><b><%= link_to @book_record.title, book_record_path(@book_record) %></b></p>
-                    <p>by <%= @book_record.author %> </p><br>
+                    <!--<p><b><%= link_to @book_record.title, book_record_path(@book_record) %></b></p> why is this link even here-->
+                    <p>by: <%= @book_record.author %> <br>
+                            ISBN: <%= @book_record.isbn %> <br>
+                            ISBN13: <%= @book_record.isbn13 %>
+                        </p><br>
                     <p><b>Synopis: </b><%= @book_record.synopsis %></p><br>
                     <br />
                     <h2>Find this book at a Pergola near you!</h2>
+                    <h4>We have <%=@book_record.books.sum{|b|b.count}%> total copies </h4>
                     <% @book_record.pergolas.each do |pergola| %>
                     <p><%= link_to pergola.name, pergola_path(pergola)%>: There are <%=Book.all.find_by(pergola_id:pergola.id,book_record_id:@book_record.id).count%> at this Pergola location<br>
                         We're located at: <%= "#{pergola.address1}, #{pergola.city}, #{pergola.state} #{pergola.zip_code}"  %>

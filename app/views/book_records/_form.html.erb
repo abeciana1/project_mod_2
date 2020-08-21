@@ -23,7 +23,7 @@
 </p>
 <p>
 <%= f.label "Type the ISBN HERE"%> 
-<%= f.text_field :isbn13 %>
+<%= f.text_field :isbn13, format: { with: /\A[a-zA-Z0-9]+\Z/ } %>
 </p>
 <p>
 <%if @book_record.id!=nil%>

@@ -7,6 +7,10 @@ class BooksController < ApplicationController
         @pergolas=Pergola.all
     end
 
+    def index
+        @books=Book.all
+    end
+
     def create
         @book = Book.create(book_params)
         if @book.valid?

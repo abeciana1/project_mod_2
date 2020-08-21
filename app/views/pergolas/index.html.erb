@@ -1,6 +1,6 @@
 <body id="pergola-index">
   <h1 class="page-header">Our Pergolas</h1>
-<% @pergolas.each do |pergola| %>
+<% @pergolas.sort_by{|p|p.name}.each do |pergola| %>
   <p><b><%= link_to pergola.name, pergola_path(pergola)%></b> // We're located at <%= "#{pergola.address1}, #{pergola.city}, #{pergola.state} #{pergola.zip_code}"  %><br>
   has <%=pergola.books.sum{|b| b.count }%> books for our community<br>
   has <%=pergola.book_records.count%> different books for our community<br>

@@ -16,6 +16,8 @@ class SessionsController < ApplicationController
 
   def destroy
     @current_user.admin = false
+    @current_user.save
+    session.delete(:success)
     session.delete(:user_id)
     redirect_to home_path
   end

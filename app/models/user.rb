@@ -13,6 +13,4 @@ class User < ApplicationRecord
     def self.verification
         @@admin_level
     end
-
-
 end

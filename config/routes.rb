@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'sessions/new', to: 'sessions#new', as: 'new_login'
   post '/sessions/create', to: 'sessions#create', as: 'login'
 
-  resources :books
+  resources :books, only: [:new, :create, :edit, :update, :index]
   resources :book_records
   resources :users
   resources :pergolas

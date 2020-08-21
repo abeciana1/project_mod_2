@@ -24,9 +24,9 @@ results=BookRecord.populate_by_author("rowling")
 results=results.map{|b|{title:b["title"],author: "J.K. Rowling",synopsis:(b["synopsis"] ? b["synopsis"] : "The synopsis is not available"), img_url:b["image"],isbn13:b["isbn13"], isbn:b["isbn"]}}
 results.each{|record|BookRecord.find_or_create_by(record)}
 
-users="greg,alexS,Tashawn,IanG,James,IanR,Jennifer,Alex,Junko,RyanW,Karan,SeMin,JakeL,Brian,Devin,Muhtasim,Josh,DavidKir,Amit,JakeM,Victor,Kevin,RyanF,Vincent,DavidK,Ward,Codyd,RyanL,Matthew,Gregory,Codyc,Mimi,Minelie,Joseph,Samuel,Sawandi,Iuri,Jzavier,Israel,Vlad,Teddy"
-users=users.split(",")
-users.each{|u|User.create(name:u, password_digest:"123456",email:"#{u}@flat.com")}
+# users="greg,alexS,Tashawn,IanG,James,IanR,Jennifer,Alex,Junko,RyanW,Karan,SeMin,JakeL,Brian,Devin,Muhtasim,Josh,DavidKir,Amit,JakeM,Victor,Kevin,RyanF,Vincent,DavidK,Ward,Codyd,RyanL,Matthew,Gregory,Codyc,Mimi,Minelie,Joseph,Samuel,Sawandi,Iuri,Jzavier,Israel,Vlad,Teddy"
+# users=users.split(",")
+# users.each{|u|User.create(name:u, password_digest:"123456",email:"#{u}@flat.com")}
 
 pergolas=[{
     name: Faker::Games::Witcher.location,
@@ -90,3 +90,8 @@ puts "cash Money"
 # BookRecord.image_checker
 # binding.pry
 0
+# The Forbidden Planet
+# Ian Rosen
+# 9781523775958
+# 1523775955
+# The year is 2276 and humans have long since left their home planet, Earth. Now they are spread across the Andromeda galaxy among thirty-three new colonies. Jason Frost has become complacent in a life of lonely non-achievement on New Earth. He can't seem to do anything right with his life, including keeping the woman he loves by his side. After leaving him to join Space Command and Patrol, she has gone missing. A mysterious new comrade knows exactly where to find her. But there's a catch. She is somewhere no one would ever think to look. Only Jason has the power to find her and save her and the entire universe from the turmoil that is about to ensue.
