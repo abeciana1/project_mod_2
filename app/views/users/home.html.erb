@@ -8,7 +8,7 @@
 <div class="new-arrivals">
 <p class="featured">
     <% BookRecord.all.each do |record| %>
-    <% if record.featured == true %>
+    <% if record.featured == false %>
         <div class="cell"><a href=<%= book_record_path(record)%> alt=<%=record.title%>><img class="book-record-search" src="<%= record.img_url %>" alt="<%= record.title%>"></a></div>
     <% end %>
     <% end %>
