@@ -26,7 +26,6 @@ class BookRecordsController < ApplicationController
                     params[:author]=@lookup
                     # session[:look]=@lookup
                     #@lookup.map{|l|array=l["title"],l["authors"],l["isbn13"]]}
-                    
                     render 'search_authors'
                 else
                     flash[:my_errors] = "Search Results failed. Could be for many reasons"

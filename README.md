@@ -37,11 +37,10 @@ Home // About // Contact // Locate A Pergola
 4. Our book_record database is derived from the API. We have the ability to draw from the API
     * Typing an ISBN or an ISBN13 into our database will prompt our system to look up the ISBN/ISBN13 from the API. If the book is in the database, information from the database will completely override the inputs of the user. If the book does not exists, the details that the volunteer has inputted will be used to create a new book. The flt prefix is for all books that we were not able to find in our database
     * Upon creation, the volunteer will be brought to a page where they have to assign the book to the Pergola of choice. Our volunteers must be careful when creating books. If they are clumsy like me, they will just need to go, find their Frankensteinian creation, and KILL IT!!! (delete it from our database)
+    * There is anothe feature in the book_record page which will allow the user to look up books by author. This will render up to 1000 results if you type in the last name of the author (no spaces or funny characters). In the same search bar, you can now copy and paste an ISIN into into it. This will create the book_record and send the user to the new_book page.
 
 
-
-BookRecord.populate(9781844543090)
-006073132X
+Below are test subjuts to in inputted as manual entries in our APP. 
 
 The Forbidden Planet
 Ian Rosen
