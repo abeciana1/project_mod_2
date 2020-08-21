@@ -4,9 +4,10 @@
 </div> -->
 
 <h1><%= @pergola.name %></h1>
+<% if @current_user %>
 <%= link_to 'Edit Pergola Details', edit_pergola_path if @current_user.admin==true%>
 <%= link_to 'BullDoze Pergola', @pergola, method: :delete, data:{confirm:'For real?'} if @current_user.admin==true %>
-
+<% end %>
 <p>We're located at: <%= "#{@pergola.address1}, #{@pergola.city}, #{@pergola.state} #{@pergola.zip_code}"  %></p>
 <br />
 <br />
@@ -19,6 +20,7 @@
   <%@book=books.find_by(book_record_id: book_record.id)%> 
   
   <p>
+  <% if @current_user %>
   There are 
   <%if @current_user.admin==true %>
       <%=link_to @book.count, edit_book_path(@book)%>
@@ -27,5 +29,6 @@
   <%end%>
   at this pergola
   <p>
+    <% end %>
   
 <% end %>

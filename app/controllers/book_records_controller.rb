@@ -26,7 +26,6 @@ class BookRecordsController < ApplicationController
                     params[:author]=@lookup
                     # session[:look]=@lookup
                     #@lookup.map{|l|array=l["title"],l["authors"],l["isbn13"]]}
-                    
                     render 'search_authors'
                 else
                     flash[:my_errors] = "Search Results failed. Could be for many reasons"
@@ -36,6 +35,8 @@ class BookRecordsController < ApplicationController
                 params[:author]
                 @book_record=BookRecord.populate(params[:author])
                 @book_record=BookRecord.create(@book_record)
+                @book_record.feature=true
+                @book_record.save
                 flash[:book]=[@book_record,"Please add #{@book_record.title} to a Pergola"]
                 redirect_to new_book_path
             end

@@ -45,6 +45,13 @@ class BookRecord < ApplicationRecord
       results =result["books"] 
     end
 
+    def self.populate_by_author2(author)
+      key = ENV["ISBN_API_KEY"]
+      response = RestClient.get("https://api2.isbndb.com/author/#{author}?pageSize=100", headers={'Authorization': key})
+      result = JSON.parse(response.body)
+      results =result["books"] 
+    end
+
     def self.image_checker
       BookRecord.all.each do |record|
         record.img_url = "https://firstfreerockford.org/wp-content/uploads/2018/08/placeholder-book-cover-default.png" if RestClient.get(record.img_url){|response, request, result| response }.code == 404

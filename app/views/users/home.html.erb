@@ -4,11 +4,11 @@
 <h3 style="text-align: center; color: red"> <%= session[:success] if session[:success] %> </h3>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet tellus cras adipiscing enim eu turpis egestas. Ultricies mi eget mauris pharetra. Eget est lorem ipsum dolor sit amet consectetur adipiscing elit. Turpis tincidunt id aliquet risus.</p>
 
-<h3 style="text-align: center">New Arrivals</h3>
+<h3 style="text-align: center">Features</h3>
 <div class="new-arrivals">
 <p class="featured">
     <% BookRecord.all.each do |record| %>
-    <% if record.featured == true %>
+    <% if record.featured == false %>
         <div class="cell"><a href=<%= book_record_path(record)%> alt=<%=record.title%>><img class="book-record-search" src="<%= record.img_url %>" alt="<%= record.title%>"></a></div>
     <% end %>
     <% end %>
