@@ -77,6 +77,15 @@ footer { position:absolute; bottom:0;}
     text-align: center;
 }
 
+.button_to {
+    width: 100px;
+    font-family: OpenSans, Helvetica Neue;
+    color: #292F36;
+    border-radius: 20px;
+    padding: 5px 5px 5px 5px;
+    text-align: center;
+}
+
 @font-face {
     font-family: 'DK Lemon Yellow Sun';
     src: url('DKLemonYellowSun.woff2') format('woff2'),
