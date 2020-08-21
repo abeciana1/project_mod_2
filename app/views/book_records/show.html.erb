@@ -1,6 +1,6 @@
 <!-- available to only admin -->
-<%= button_to 'Edit this record', edit_book_record_path(@book_record), :method => :get, data:{confirm:'edit'} if @current_user.admin==true %>
-<%= button_to 'Delete this record', @book_record, method: :delete, data:{confirm:'For real?'} if @current_user.admin==true %>
+<%= button_to 'Edit', edit_book_record_path(@book_record), :method => :get, data:{confirm:'edit'} if @current_user.admin==true %>
+<%= button_to 'Delete', @book_record, method: :delete, data:{confirm:'For real?'} if @current_user.admin==true %>
 
 <h1 class="page-header"> <%= @book_record.title %> </h1>
 <p>
