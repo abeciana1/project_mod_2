@@ -35,7 +35,11 @@ class BookRecordsController < ApplicationController
     end
 
     def update
-        if @book_record.update(book_record_params)
+        @book_record.update(book_record_params)
+        # byebug
+        if @book_record.valid?
+            # byebug
+            # @book_record.save
             redirect_to @book_record
         else
             flash[:my_errors] = @book_record.errors.full_messages
@@ -45,6 +49,9 @@ class BookRecordsController < ApplicationController
 
     def destroy
         @book_record.destroy
+        # @book_record
+        # byebug
+        # @book_record.delete
         redirect_to book_records_path
     end
     
@@ -55,7 +62,7 @@ class BookRecordsController < ApplicationController
     end
     
     def book_record_params
-        params.require(:book_record).permit(:title,:author,:synopsis,:img_url,:isbn13,:isbn)
+        params.require(:book_record).permit(:title,:author,:synopsis,:img_url,:featured,:isbn13,:isbn)
     end
 
 end

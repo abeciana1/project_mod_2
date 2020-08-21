@@ -2,14 +2,16 @@ class UsersController < ApplicationController
     before_action :find_user, only: [:show, :edit, :update, :destroy]
     skip_before_action :authorized, only: [:new, :home, :contact, :about,:create]
 
-    
     def home
+        
     end
 
     def contact
+        
     end
 
     def about
+        
     end
 
     def show
@@ -31,27 +33,44 @@ class UsersController < ApplicationController
         @user.admin=false
         @user.save
         if @user.valid?
-            session[:user_id] = @user.id 
-            redirect_to pergolas_path
+          session[:user_id] = @user.id 
+          redirect_to '/'
         else
             flash[:my_errors]=@user.errors.full_messages
             redirect_to new_user_path
+        end
+    end
+
+    def contra
+        @user = User.new
+        session[:contra] = "What is the password?"
+    end
+
+    def verify
+        # byebug
+        if params[:query] == User.verification
+            @current_user.admin = true
+            @current_user.save
+            session[:success] = "You're now an admin"
+            redirect_to '/'
+        else
+            redirect_to '/'
         end
     end
     
     def edit;end
 
     def update
-        @user =User.update(user_params)
+        @user =@User.update(user_params)
         if @user.update?
-            redirect_to users_path
+            redirect_to user_path
         else
-            flash[:errors]=@user.errors.full_messages
+            flash[:my_errors]=@user.errors.full_messages
             redirect_to edit_user_path
         end
     end
 
-    def delete
+    def destroy
         @user.destroy
         redirect_to users_path
     end

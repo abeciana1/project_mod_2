@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get '/', to: 'users#home', as: 'home'
   get '/about', to: 'users#about'
   get '/contact', to: 'users#contact'
+
+  get '/contra', to: 'users#contra'
+  put '/verify', to: 'users#verify', as: 'verify'
   # get '/login', to: 'session#login'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

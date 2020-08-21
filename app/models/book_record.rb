@@ -4,7 +4,7 @@ require "json"
 require "httparty"
 
 class BookRecord < ApplicationRecord
-  has_many :books
+  has_many :books, dependent: :destroy
   has_many :pergolas, through: :books
   has_many :users, through: :books
   validates :title, :author, presence: true
