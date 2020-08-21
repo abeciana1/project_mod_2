@@ -1,5 +1,23 @@
 <%if @users %>
+<table style="width:50px">
+  <tr>
+    <th>Name </th>
+    <th> </th>
+    <th>User email</th>
+    <th> </th>
+    <th>Admin Status</th>
+    <th> </th>
+    <th>edit</th>
+    <th> </th>
+    <th>Delete</th>
+  </tr>
     <%@users.each do |u|%>
-        <br><%=u.name.capitalize%> <%= u.email%> <%=u.admin%> <%= link_to 'Delete', u, method: :delete, data:{confirm:'For Sure?'} %><br>
+        <tr>
+        <td><%=u.name.capitalize%> <td>
+        <td><%= u.email%> <td>
+        <td><%=u.admin%> <td>
+        <td><%= link_to'Edit', edit_user_path(u) %><br><td>
+        <td><%= button_to'Delete', u, method: :delete, data:{confirm:'For Sure?'} %><br><td>
+        </tr>
     <%end%>
 <%end%>

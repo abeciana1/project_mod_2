@@ -18,10 +18,10 @@
     <%if flash[:book]%>
         <%=f.collection_select :book_record_id, @book_records.select{|x|x.id==flash[:book][0]["id"]}, :id, :title%>
     <%else%>    
-        <%=f.collection_select :book_record_id, @book_records, :id, :title%>
+        <%=f.collection_select :book_record_id, @book_records.sort_by{|b|b.title}, :id, :title%>
     <%end%>
     </p>
-    <%=f.collection_select :pergola_id, @pergolas, :id, :name%>
+    <%=f.collection_select :pergola_id, @pergolas.sort_by{|p|p.name}, :id, :name%>
     <p>
     <%=f.submit%>
     </p>

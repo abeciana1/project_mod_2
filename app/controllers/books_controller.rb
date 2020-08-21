@@ -12,11 +12,12 @@ class BooksController < ApplicationController
     end
 
     def create
-        @book = Book.create(book_params)
+        @book = Book.find_or_create_by(book_params)
         if @book.valid?
         redirect_to pergola_path(@book.pergola)
         else
         flash[:errors] = @book.errors.full_messages
+        flash[:old_book]=Book.all.find_by(book_record_id:@book.book_record_id,pergola_id:@book.pergola_id)
         redirect_to new_book_path
         end
     end

@@ -1,3 +1,6 @@
-<h1> class="page-header">Assign Books to the Pergola Here</h1>
-
+<h1>Assign Books to the Pergola Here</h1>
+<%if flash[:old_book]%>
+    <%@old_book=Book.all.find_by(id:flash[:old_book]["id"])%>
+    <%=link_to "Edit the quantity of #{@old_book.count} that exists at the #{@old_book.pergola.name}", edit_book_path(@old_book) %><br><br>
+<%end%>
 <%= render 'form' %>
